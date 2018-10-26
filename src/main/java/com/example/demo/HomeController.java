@@ -8,47 +8,48 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import sun.misc.resources.Messages;
 
 import javax.validation.Valid;
 @Controller
 public class HomeController {
 
     @Autowired
-    CourseRepository CourseRepository;
+    MessageRepository MessageRepository;
     @RequestMapping("/")
-    public String listCourses(Model model){
-        model.addAttribute("courses", CourseRepository.findAll());
+    public String listMessages(Model model){
+        model.addAttribute("messages", MessageRepository.findAll());
         return "list";
     }
     @GetMapping("/add")
     public String processForm(Model model){
-        model.addAttribute("course",new Course());
-        return "courseform";
+        model.addAttribute("message",new Message());
+        return "Messageform";
     }
 
     @PostMapping("/process")
-    public String processForm(@Valid Course course, BindingResult result){
+    public String processForm(@Valid Message message, BindingResult result){
         if (result.hasErrors()){
-            return "courseform";
+            return "Messageform";
         }
-        CourseRepository.save(course);
+        MessageRepository.save(message);
         return "redirect:/";
     }
 
     @RequestMapping("/detail/{id}")
-    public String showCourse(@PathVariable("id") long id, Model model){
-        model.addAttribute("course",CourseRepository.findById(id).get());
+    public String showMessage(@PathVariable("id") long id, Model model){
+        model.addAttribute("message", MessageRepository.findById(id).get());
         return "show";
     }
     @RequestMapping("/update/{id}")
-    public String updateCourse(@PathVariable("id")long id, Model model){
-        model.addAttribute("course",CourseRepository.findById(id).get());
-        return "courseform";
+    public String updateMessage(@PathVariable("id")long id, Model model){
+        model.addAttribute("message", MessageRepository.findById(id).get());
+        return "Messageform";
 
     }
     @RequestMapping("/delete/{id}")
-    public String delcourse(@PathVariable("id")long id, Model model) {
-        CourseRepository.deleteById(id);
+    public String delmessage(@PathVariable("id")long id, Model model) {
+        MessageRepository.deleteById(id);
         return "redirect:/";
     }
 

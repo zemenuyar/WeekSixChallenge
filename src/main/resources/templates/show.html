@@ -2,15 +2,15 @@
 <html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Message</title>
 </head>
 <body>
-<a href="/">Show all Courses</a><br />
-ID :<span th:text="${course.id}"></span><br />
-Title :<span th:text="${course.title}"></span><br />
-Instructor :<span th:text="${course.content}"></span><br />
-Description :<p th:text="${course.postedDate}"><p>
-    Credits :<span th:text="${course. postedBy}"></span><br />
-    <a th:href="@{/delete/{id}(id=${course.id})}">Delete this course</a>
+<a href="/">Show all Message</a><br />
+ID :<span th:text="${message.id}"></span><br />
+Title :<span th:text="${message.title}"></span><br />
+Content :<span th:text="${message.content}"></span><br />
+ PostedDate :<p th:text="${message.postedDate}"><p>
+    PostedBy :<span th:text="${message. postedBy}"></span><br />
+    <a th:href="@{/delete/{id}(id=${message.id})}">Delete this message</a>
 </body>
 </html>

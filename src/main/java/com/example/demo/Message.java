@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Course {
+public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
